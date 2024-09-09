@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermaSkan Progress with Tick</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .progress-wrapper {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 10px solid #f0f0f0;
+            border-radius: 50%;
+            border-top-color: #ff6b57;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .circle-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 10px solid transparent;
+            border-radius: 50%;
+        }
+
+        .text {
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        /* The checkmark should be hidden initially */
+        .checkmark {
+            visibility: hidden;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ff6b57;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Show the checkmark only when the animation is complete */
+        .complete .checkmark {
+            visibility: visible;
+        }
+
+        /* Hide the spinning circle after completion */
+        .complete .circle {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-wrapper">
+            <div class="progress-circle">
+                <div class="circle"></div>
+                <div class="circle-mask"></div>
+                <div class="checkmark">✓</div> <!-- Hidden checkmark -->
+            </div>
+        </div>
+        <div class="text">DermaSkan analyzing product ingredients</div>
+    </div>
+
+    <script>
+        // Simulate the completion of the loading process after 3 seconds
+        setTimeout(() => {
+            const progressWrapper = document.querySelector('.progress-wrapper');
+            progressWrapper.classList.add('complete'); // Add the 'complete' class to show the tick and hide the spinner
+            document.querySelector('.text').innerText = 'Analysis Complete'; // Update the text after completion
+        }, 3000); // 3 seconds delay
+    </script>
+</body>
+</html>
